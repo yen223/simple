@@ -1,6 +1,80 @@
-{% extends "layout.html" %}
-{% block content %}
-		<article>
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>wei yen</title>
+	<meta name="description" content="wei yen's personal website">
+	<meta name="author" content="wei yen">
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+	<link rel="stylesheet" href="stylesheets/pygment_trac.css">
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+</head>
+<body>
+
+
+
+	<!-- Primary Page Layout
+	================================================== -->
+
+	<!-- Delete everything in this .container and get started on your own site! -->
+
+	<div class="container">
+		<!--<div class="sixteen columns">-->
+		<div id="left-col">
+			<div class="left-top">
+      <a href="">
+      <header>
+        		<h1>wei<strong>yen</strong></h1>
+            <h2>Hi, I'm a software engineer from <em>Malaysia</em>. I enjoy coding in <em>Python</em> and <em>C#</em></h2>
+      </header>
+      </a>
+      </div>
+      <div class="navigation">
+        <nav>
+          <a href="./about/"><div class="sidebar">about me</div></a>
+          <a href="./blog/"><div class="sidebar">blog</div></a>
+          <a href="./projects/"><div class="sidebar">projects</div></a>
+          <a href="./experiments/"><div class="sidebar last">experiments</div></a>
+          <!--<a href="www.example4.com"><div><strong>placeholder</strong></div></a>-->
+        </nav>
+      </div>
+<!--        <div class="contacts">
+          <div class="contact_header">find me at</div>
+          <div class="contact_link">
+            <span>
+              <a class="con-fb" href="facebook"><img src="icons/facebook.png"></a>
+              <a href="google">G+ </a>
+              <a href="email">email</a>
+            </span>
+          </div>
+      </div> -->
+		</div>
+		<div id="main_content">
+			<article>
 				<section class="title">
         <h1>How to set up a Python environment in Mac OS X</h1>
         <!--<span><em>15 October 2012</em></span>-->
@@ -12,7 +86,7 @@
         <p>Roses are <em>emphasized</em><br>Violets are <strong>strong</strong></p>
         <h2>A bit of the GitHub spice</h2>
         <h3>In addition to the changes in the previous section, certain references are auto-linked:</h3>
-        <ul class="disc">
+        <ul class="circle">
         <li>SHA: <a href="http://github.com/mojombo/god/commit/be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2">be6a8cc</a></li>
         <li>User@SHA ref: <a href="http://github.com/mojombo/god/commit/be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2">mojombo@be6a8cc</a></li>
         <li>User/Project@SHA: <a href="http://github.com/mojombo/god/commit/be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2">mojombo/god@be6a8cc</a></li>
@@ -117,5 +191,16 @@ end</code></pre>
         <p>Let's test some forms!</p>
         <input type="text" label="name" placeholder="Type here...">
         <label>Press me!<input type="button" value="Press me!"></label>
-    </article>
-{% endblock %}
+      </article>
+		</div><!--main_content-->
+   <!--  <div id="right-col">
+      <div class="tooltip_display">dummy text</div>
+    </div> -->
+<!--</div>sixteen-->
+	</div><!-- container -->
+
+
+<!-- End Document
+================================================== -->
+</body>
+</html>

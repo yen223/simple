@@ -1,130 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
-        <link href="{{ url_for('static', filename='css/layout.css') }}" rel="stylesheet" media="screen">
-        <link href='http://fonts.googleapis.com/css?family={{ config.FONT_NAME|replace(' ','+') }}:400,900' rel='stylesheet' type='text/css'>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.7.2.min.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-modal.js') }}"></script>
-        <link href="/style.css" rel="stylesheet" type="text/css">
-        <link href="{{ url_for('static', filename='css/prettify.css') }}" rel="stylesheet" type="text/css">
-        <script src="{{ url_for('static', filename='js/prettify.js') }}" type="text/javascript"></script>
-        {% block title %}{% endblock %}
-        {% block head %}{% endblock %}
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
 
-        <style>
-            body {
-                padding-top: 20px;
-            }
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>{{ config.BLOG_TITLE }}</title>
+	<meta name="description" content="wei yen's personal website">
+	<meta name="author" content="wei yen">
 
-            .sidebar-nav-fixed {
-                position:fixed;
-            }
-        </style>
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/pygment_trac.css') }}">
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 
-    </head>
-    <body onload="prettyPrint()">
-        <div class="container-fluid">
-
-            <div class="span2 sidebar-nav-fixed">
-                <div class="hidden-phone">
-                    <header>
-                        <h1><a href="{{ url_for('index') }}">{{ config.BLOG_TITLE }}</a></h1>
-                        <br />
-                        <span>{{ config.BLOG_TAGLINE }}</span>
-                        <ul>
-                            {% if config.GITHUB_USERNAME %}
-                                <li><p><a href="https://github.com/{{ config.GITHUB_USERNAME }}/">Github</a></p></li>
-                            {% endif %}
-                            {% if config.CONTACT_EMAIL %}
-                                <li><p><p><a href="mailto:{{ config.CONTACT_EMAIL }}?subject:Howdy">Email me</a></p></li>
-                            {% endif %}
-                            {% if config.TWITTER_HANDLE %}
-                                <li><p><a href="https://twitter.com/{{ config.TWITTER_HANDLE }}/">Twitter</a></p></li>
-                            {% endif %}
-                            {% if config.GOOGLE_PLUS_PROFILE %}
-                                <li><p><a href="https://plus.google.com/{{ config.GOOGLE_PLUS_PROFILE }}/posts">Google+</a></p></li>
-                            {% endif %}
-
-                            <li>
-                                <p><a href="{{ url_for('feed') }}">Feed</a></p>
-                            </li>
-
-                            {% if is_admin %}
-                                <li>
-                                    <p><a href="{{ url_for('admin') }}">Admin</a></p>
-                                </li>
-                            {% endif %}
-
-                            {% block sidebar %}{% endblock %}
-                        </ul>
-                        <span class="powered-by">
-                          Powered by <a href="http://github.com/orf/simple">Simple</a>,
-                            inspired by <a href="https://github.com/NateW/obtvse">Obtvse</a>
-                        </span>
-                    </header>
-                </div>
-            </div>
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  {% block title %}{% endblock %}
+  {% block head %}{% endblock %}
+</head>
+<body>
 
 
-            <div class="hidden-phone">
-                <div class="span2"></div>
-                <!--Hack! The position: fixed on the sidebar div screws with stuff.
-                    I sit here to maintain order and positioning.-->
-            </div>
 
-            <div class="hidden-phone">
-                <div class="span1">
-                    <!--Divider!!-->
-                </div>
-            </div>
+	<!-- Primary Page Layout
+	================================================== -->
 
-            <div class="span8">
-                <div class="row-fluid">
-                    <div class="span12">
-                        <time>
-                            {% if post %}
-                                Posted {{ post.created_at.strftime('%B %d, %Y') }}
-                                {% if post.created_at.strftime('%B %d, %Y') != post.updated_at.strftime('%B %d, %Y') %}
-                                    , Updated {{ post.updated_at.strftime('%B %d, %Y') }}
-                                {% endif %}
-                            {% else %}
-                                <div class="visible-phone">
-                                    <h3><a href="{{ url_for('index') }}">{{ config.BLOG_TITLE }}</a></h3>
-                                    <span>{{ config.BLOG_TAGLINE }}</span>
-                                </div>
-                                <div class="hidden-phone">
-                                    {{ now.strftime('%B %d, %Y') }}
-                                </div>
-                            {% endif %}
-                        </time>
-                    </div>
-                </div>
+	<!-- Delete everything in this .container and get started on your own site! -->
 
-                <div class="row-fluid">
-                    <div class="span12">
-                        <div class="visible-phone"><br/></div>
-                        <div class="hidden-phone"><hr/></div>
-                    </div>
-                </div>
+	<div class="container">
+		<!--<div class="sixteen columns">-->
+		<div id="left-col">
+			<div class="left-top">
+      <header>
+        		<h1>wei<strong>yen</strong></h1>
+            <h2>Hi, I'm a software engineer from <em>Malaysia</em>. I code in <em>Python</em> and <em>C#</em> for fun and the occasional profit.</h2>
+            <h2>If you'd like to contact me, please send me an email at <a href="mailto:lee@weiyen.me">lee@weiyen.me</a></h2>
+      </header>
+      </div>
+      <div class="navigation">
+        <nav>
+          <a href="./about/"><div class="sidebar">about me</div></a>
+          <a href="./blog/"><div class="sidebar">blog</div></a>
+          <a href="./projects/"><div class="sidebar">projects</div></a>
+          <a href="./experiments/"><div class="sidebar last">experiments</div></a>
+          <!--<a href="www.example4.com"><div><strong>placeholder</strong></div></a>-->
+        </nav>
+      </div>
+		</div>
+		<div id="main_content">
+			{% block content %}{% endblock %}
+		</div><!--main_content-->
+	</div><!-- container -->
 
-                <div class="row-fluid">
-                    <div class="span12">
-                        {% block content %}{% endblock %}
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        {% if config["ANALYTICS_ID"]  %}
-            <script>
-                var _gaq=[['_setAccount','{{ config["ANALYTICS_ID"] }}'],['_trackPageview']];
-                (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-                     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-                    s.parentNode.insertBefore(g,s)}(document,'script'));
-            </script>
-        {% endif %}
-    </body>
+<!-- End Document
+================================================== -->
+</body>
 </html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <title>Admin Panel</title>
+
+    {% block css %}{% endblock %}
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,900' rel='stylesheet' type='text/css' />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    {% block head %}{% endblock %}
+</head>
+
+<body class="admin">
+<div id="admin">
+    {% block content %}{% endblock %}
+</div>
+
+<script src="{{ url_for('static', filename='js/functions.js') }}" type="text/javascript"></script>
+</body>
+</html>
