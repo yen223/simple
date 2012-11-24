@@ -4,6 +4,7 @@
         <title>{% block title %}{% endblock %}</title>
         <link href="{{ url_for('static', filename='css/_normalize.css') }}" type="text/css" media="screen" rel="stylesheet">
         <link href="{{ url_for('static', filename='css/layout.css') }}" type="text/css" media="screen" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/base.css') }}" type="text/css" media="screen" rel="stylesheet">
         <meta name="author" content="{{ config.AUTHOR }}">
         <link href="/posts.rss" rel="alternate" title="RSS" type="application/rss+xml" />
         <link href='http://fonts.googleapis.com/css?family={{ config.FONT_NAME|replace(' ','+') }}:400,900' rel='stylesheet' type='text/css'>

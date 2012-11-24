@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% set active_page = 'home' %}
+{% block title %}<title>Wei Yen's Page</title>{% endblock %}
+{% block content %}
+	<section class="headline">
+    	<h1>Hello there!</h1>
+	</section>
+	<article>	
+        <h2>I'm Wei Yen. I make software work.</h2>
+        <p>I am an experienced software developer, based in sunny <strong>Malaysia</strong>. I am a serious <strong>tech enthusiast</strong>, and a big believer in <strong>automating everything</strong>. I enjoy building software that is <strong>scalable</strong>, <strong>robust</strong>, and <strong>beautiful</strong>.</p>
+        <p>If you want to contact me, feel free to drop me an email: <a href="mailto:lee@weiyen.me">&lt;lee@weiyen.me&gt;</a>.</p>
+	</article>
+	<section class="buttons">
+		<a class="btn home about" href="/about">About Me</a>
+		<a class="btn home index" href="{{ url_for('index', page=0) }}">Blog</a>
+		<a class="btn home projects" href="{{ url_for('index', page=0) }}">Projects</a>
+		<a class="btn home contact" href="{{ url_for('index', page=0) }}">Contact me</a>
+	</section>
+{% endblock %}

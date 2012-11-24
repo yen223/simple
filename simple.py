@@ -91,8 +91,15 @@ def requires_authentication(func):
         return func(*args, **kwargs)
 
     return _auth_decorator
+@app.route("/test")
+def testpost():
+    return render_template("test_post.html")
 
 @app.route("/")
+def home():
+    return render_template("home.html")
+
+@app.route("/blog/")
 def index():
     """ Index Page. Here is where the magic starts """
     page = request.args.get("page", 0, type=int)
@@ -112,19 +119,23 @@ def index():
     last_possible_post_on_page = page * app.config["POSTS_PER_PAGE"]\
                                + app.config["POSTS_PER_PAGE"]
     there_is_more = posts_count > last_possible_post_on_page
-
     return render_template("index.html", 
                            posts=posts, 
                            now=datetime.datetime.now(),
                            is_more=there_is_more, 
-                           current_page=page, 
+                           current_page=page,
                            is_admin=is_admin())
 
-@app.route("/style.css")
+@app.route("/about")
+def show_about_page():
+    """Display the About page"""
+    return render_template("about.html")
+
+'''@app.route("/style.css")
 def render_font_style():
     t = render_template("font_style.css",
                             font_name=app.config["FONT_NAME"])
-    return Response(t, mimetype="text/css")
+    return Response(t, mimetype="text/css")'''
 
 @app.route("/<int:post_id>")
 def view_post(post_id):
@@ -282,7 +293,12 @@ def slugify(text, delim=u'-'):
     else:
         return slug
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 if __name__ == "__main__":
     # Listen on all interfaces. This is so I could view the page on my iPhone/WP7 *not* so you can deploy using this file.
 
-    app.run(host="127.0.0.1")
+    #app.run(host="0.0.0.0")
+    app.run(debug=True)

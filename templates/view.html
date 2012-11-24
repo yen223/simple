@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-
+{% set active_page = 'blog' %}
 {% block title %}<title>{{ post.title }} - {{ config.BLOG_TITLE }}</title>{% endblock %}
 
 {% block sidebar %}
@@ -14,22 +14,29 @@
     <br />
     Views: {{ post.views }}
 {% endblock %}
-
+{% block admin_links %}
+    {{ super() }}
+    {% if is_admin %}
+        <a href="{{ url_for('edit', post_id=post.id) }}"><div class="sidebar">edit this post</div></a>
+    {% endif %}
+{% endblock %}
 {% block content %}
-    <section id="post-{{ post.id }}">
+    <section class="headline post">
+        <h1>{{ post.title }}</h1>
+        <!-- <h2>{{ post.created_at.strftime('%d %b %Y') }}</h2> -->
+    </section>
+    <article id="post-{{ post.id }}">
         <div class="post_container">
-            <div class="post_header">
-                <h1>{{ post.title }}</h1>
-            </div>
-            <br/>
-            {{ post.render_content()|safe }}
-            {% if is_admin %}
-
-            {% endif %}
+            
+            {{ post.render_content()|safe }}   
         </div>
+    </article>
 
-        <br/>
-        <a class="btn btn-inverse" href="{{ url_for('index', page=pid) }}">Back to Blog</a>
-        <br/>
+    <section class="buttons footer">
+        <a class="btn back" href="{{ url_for('index', page=pid) }}">&larr; Back to Blog</a>
+        <a class="btn twitter" href="https://twitter.com/share?text={{post.title}}&url={{url_for('view_post_slug', slug=post.slug)}}"><div class="icon">&nbsp;</div>Tweet this!</a><!-- 
+        <a class="facebook" href="https://www.facebook.com"><div class="icon">&nbsp;</div>Like this!</a>
+        <a class="google-plus" href="https://plus.google.com"><div class="icon">&nbsp;</div>+1 this!</a> -->
+        
     </section>
 {% endblock %}

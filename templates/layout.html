@@ -8,7 +8,6 @@
 	<!-- Basic Page Needs
   ================================================== -->
 	<meta charset="utf-8">
-	<title>{{ config.BLOG_TITLE }}</title>
 	<meta name="description" content="wei yen's personal website">
 	<meta name="author" content="wei yen">
 
@@ -34,38 +33,48 @@
   {% block title %}{% endblock %}
   {% block head %}{% endblock %}
 </head>
+
+<!-- Navigation Elements -->
+<!-- (link, css class, text)-->
+{% set navigation_bar = [
+    ('/', 'home', 'home'),
+    ('/about', 'about', 'about me'),
+    ('/blog/', 'blog', 'blog'),
+    ('/projects/', 'projects', 'projects'),
+    ('/contact', 'contact', 'contact'),
+    ('/test', 'test', 'test')
+] -%}
+{% set active_page = active_page|default('home') -%}
 <body>
 
-
-
-	<!-- Primary Page Layout
-	================================================== -->
-
-	<!-- Delete everything in this .container and get started on your own site! -->
-
 	<div class="container">
-		<!--<div class="sixteen columns">-->
-		<div id="left-col">
-			<div class="left-top">
-      <header>
-        		<h1>wei<strong>yen</strong></h1>
-            <h2>Hi, I'm a software engineer from <em>Malaysia</em>. I code in <em>Python</em> and <em>C#</em> for fun and the occasional profit.</h2>
-            <h2>If you'd like to contact me, please send me an email at <a href="mailto:lee@weiyen.me">lee@weiyen.me</a></h2>
-      </header>
-      </div>
-      <div class="navigation">
-        <nav>
-          <a href="./about/"><div class="sidebar">about me</div></a>
-          <a href="./blog/"><div class="sidebar">blog</div></a>
-          <a href="./projects/"><div class="sidebar">projects</div></a>
-          <a href="./experiments/"><div class="sidebar last">experiments</div></a>
-          <!--<a href="www.example4.com"><div><strong>placeholder</strong></div></a>-->
-        </nav>
-      </div>
-		</div>
 		<div id="main_content">
 			{% block content %}{% endblock %}
 		</div><!--main_content-->
+		<div id="sidebar">
+			<div class="header">
+				<header>
+					<a href="/"><h1>wei<strong>yen</strong></h1></a>
+				</header>
+      		</div>
+      		<div class="navigation">
+        		<nav>
+        			<!-- <a href="./"><div class="sidebar">home</div></a>
+		          	<a href="./about"><div class="sidebar">about me</div></a>
+		          	<a href="./blog"><div class="sidebar">blog</div></a>
+		          	<a href="./test"><div class="sidebar">test</div></a> -->
+		          	{% for href, id, caption in navigation_bar %}
+		          		<a href="{{href}}"><div class="sidebar {% if id == active_page %} active{% endif %}">{{caption}}</div></a>
+		          	{% endfor %}
+					{% if is_admin %}
+						{% block admin_links %}
+					  		<h2>Admin links</h2>
+					  		<a href=""><div class="sidebar">logout</div></a>
+						{% endblock %}
+					{% endif %}
+        		</nav>
+      		</div>
+		</div>
 	</div><!-- container -->
 
 
